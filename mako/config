@@ -5,7 +5,7 @@ icons=1
 icon-path=/usr/share/icons/Qogir-dark/
 icon-location=left
 
-# Format
+on-notify=exec echo -e "\a"
 
 margin=20,20
 padding=20,10
