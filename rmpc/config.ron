@@ -1,0 +1,56 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+	address: "127.0.0.1:6600",
+	theme: None,
+	cache_dir: None,
+	on_song_change: ["~/.config/rmpc/notify.sh"],
+	volume_step: 5,
+	status_update_interval_ms: 1000,
+	select_current_song_on_change: true,
+	album_art: (
+		method: Auto,
+		max_size_px: (width: 600, height: 600),
+	),
+  keybinds: (
+		global: {
+			":":       CommandMode,
+			"<Down>":       VolumeDown,
+			"<Up>":       VolumeUp,
+			"H":  PreviousTab,
+			"K": NextTab,
+			"Q":       Quit,
+			"S":       ToggleSingle,
+			"R":       ToggleRandom,
+			"<Space>":       TogglePause,
+			"r":       ToggleRepeat,
+			"C":       ToggleConsume,
+			"<Left>":       PreviousTrack,
+			"<Right>":       SeekForward,
+		},
+    navigation: {
+			"U":       UpHalf,
+			"J":       DownHalf,
+			"u":       Up,
+			"j":       Down,
+			"/":       EnterSearch,
+			"<Esc>":   Close,
+			"h":       Left,
+			"k":       Right,
+			"v": Select,
+			"D":       Delete,
+			"a":       Add,
+			"A":       AddAll,
+			"<CR>":    Confirm,
+		},
+		queue: {
+			"k":    Play,
+			"<C-s>":   Save,
+			"a":       AddToPlaylist,
+			"d":       Delete,
+			"D":       DeleteAll,
+		},
+	),
+)
+

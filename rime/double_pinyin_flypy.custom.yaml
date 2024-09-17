@@ -1,0 +1,3 @@
+patch:
+  # 导入自定义词库
+  translator/dictionary: mydit

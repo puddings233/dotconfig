@@ -1,0 +1,202 @@
+{
+	"layer": "top",
+	"position": "top",
+	"modules-left": ["clock#time", "clock#date", "hyprland/language", "custom/arrow1", "custom/timer", "custom/pacman", "custom/arrow2", "idle_inhibitor", "custom/arrow3", "mpd"],
+	"modules-center": ["custom/arrow4", "hyprland/workspaces", "custom/arrow5"],
+	"modules-right": ["custom/arrow6", "group/power", "custom/arrow7",  "temperature", "cpu", "custom/arrow8", "network", "battery", "bluetooth", "pulseaudio", "tray"],
+	"hyprland/workspaces": {
+		"all-outputs": true,
+		"active-only": false,
+		"format": "{icon}",
+		"format-icons": {
+			"active": "󱘉",
+			"1": "󰲡",
+			"2": "󰲣",
+			"3": "󰲥",
+			"4": "󰲧",
+			"5": "󰲩",
+			"6": "󰲫",
+			"7": "󰲭",
+			"8": "󰲯",
+			"9": "󰲱"
+		}
+	},
+	"bluetooth": {
+		"format": "󰂯 {status}",
+		"format-connected": "󰂱 {num_connections}",
+		"format-connected-battery": "󰂱 {num_connections} 󰥂 {device_battery_percentage}%"
+	},
+	"hyprland/language": {
+		"format": " {}",
+		"max-length": 6,
+		"min-length": 4
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
+	"tray": {
+		"spacing": 4
+	},
+	"clock#time": {
+		"interval": 60,
+		"format": " {:%R}",
+		"tooltip": false
+	},
+	"clock#date": {
+		"interval": 60,
+		"format": " {:%m-%e %a}",
+		"tooltip": false
+	},
+	"temperature": {
+		"interval": "1",
+		"hwmon-path": "/sys/class/thermal/thermal_zone0/hwmon1/temp1_input",
+		"critical-threshold": 90,
+		"format-critical": "  {temperatureC}°C",
+		"format": "{icon} {temperatureC}°C",
+		"format-icons": ["", "", ""],
+		"max-length": 8,
+		"min-length": 7
+	},
+	"cpu": {
+		"interval": 10,
+		"format": " {usage}% 󰊕 {avg_frequency}GHz "
+	},
+	"network": {
+		"format-wifi": "󰖩 Wifi",
+		"format-ethernet": "󰲝 Ether",
+		"format-disconnected": "󰖪 Disconnected",
+		"tooltip-format-wifi": "{essid}:{ipaddr}/{cidr}",
+		"tooltip-format-ethernet": "Ether:{ipaddr}/{cidr}",
+		"tooltip-format-disconnected": "󰱭"
+	},
+	"battery": {
+		"bat": "BAT1",
+		"adapter": "ACAD",
+		"full-at": 100,
+		"format": "{icon} {capacity}%",
+		"format-icons": ["", "", "", "", ""]
+	},
+	"pulseaudio": {
+		"format": "{icon}{volume}% {format_source}",
+		"format-bluetooth": "󰥰 {volume}% {format_source}",
+		"format-bluetooth-muted": "󰗿  {format_source}",
+		"format-muted": "󰖁  {format_source}",
+		"format-source": "{volume}%",
+		"format-source-muted": "<span color=\"#fb4833\"></span>",
+		"format-icons": {
+			"headphone": "󰋋 ",
+			"headset": "󰋎 ",
+			"default": [" ", " ", " "]
+		},
+		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+	},
+	"custom/pacman": {
+		"format": "{} {icon}",
+		"return-type": "json",
+		"format-icons": {
+			"has-updates": "󱥰",
+			"updated": "󰮯"
+		},
+		"exec-if": "which waybar-module-pacman-updates",
+		"exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
+	},
+	"group/power": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 500,
+			"children-class": "not-power",
+			"transition-left-to-right": false
+		},
+		"modules": [
+			"custom/power",
+			"custom/reboot",
+			"custom/suspend",
+			"custom/lock"
+		]
+	},
+	"custom/power": {
+		"format": "",
+		"tooltip": false,
+		"on-click": "systemctl poweroff"
+	},
+	"custom/reboot": {
+		"format": "󰜉",
+		"tooltip": false,
+		"on-click": "systemctl reboot"
+	},
+	"custom/suspend": {
+		"format": "󰒲",
+		"tooltip": false,
+		"on-click": "systemctl suspend"
+	},
+	"custom/lock": {
+		"format": "󰍁",
+		"tooltip": false,
+		"on-click": "swaylock"
+	},
+	"mpd": {
+		"format": "{stateIcon} {artist}-{title} ",
+		"format-disconnected": "Disconnected ",
+		"format-stopped": "",
+		"interval": 10,
+		"interval": 10,
+		"state-icons": {
+			"paused": "",
+			"playing": ""
+		}
+	},
+	"custom/timer": {
+		"tooltip": true,
+		"return-type": "json",
+		"exec": "$HOME/.config/waybar/script/waybar-timer.sh check",
+		"on-click": "$HOME/.config/waybar/script/waybar-timer.sh minute_dialog",
+		"on-click-right": "$HOME/.config/waybar/script/waybar-timer.sh datetime_dialog",
+		"on-click-middle": "$HOME/.config/waybar/script/waybar-timer.sh stop",
+		"interval": 1
+	},
+	"custom/arrow1": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow2": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow3": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow4": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow5": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow6": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow7": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow8": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow9": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow10": {
+		"format": "",
+		"tooltip": false
+	}
+}

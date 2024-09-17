@@ -1,0 +1,16 @@
+# 小鹤双拼方案 需要rime-ice-double-pinyin-flypy-git
+patch:
+  # 仅使用「雾凇拼音」的默认配置
+  __include: rime_ice_suggestion:/
+  # 以下根据自己所需自行定义
+  __patch:
+    # 候选词
+    menu/page_size: 9
+    key_binder/bindings:
+      # , . 翻页
+      - { when: paging, accept: comma, send: Page_Up }
+      - { when: has_menu, accept: period, send: Page_Down }
+      # 切换中英
+      - { when: always, accept: Control+Alt+1, toggle: ascii_mode }
+      # 切换简繁
+      - { when: always, accept: Control+Shift+2, toggle: traditionalization }

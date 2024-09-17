@@ -1,0 +1,9 @@
+[Unit]
+Description=Back up filesystem by using timeshift.
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "/usr/bin/timeshift --create"
+
+[Install]
+WantedBy=multi-user.target

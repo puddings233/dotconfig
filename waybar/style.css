@@ -1,0 +1,267 @@
+@keyframes blink-warning {
+    70% {
+        color: @light;
+    }
+
+    to {
+        color: @light;
+        background-color: @warning;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: @light;
+    }
+
+    to {
+        color: @light;
+        background-color: @critical;
+    }
+}
+
+
+@define-color light #D8DEE9;
+@define-color warning #ebcb8b;
+@define-color nord_bg #282828;
+@define-color nord_bg_blue @bg;
+@define-color nord_light #D8DEE9;
+
+@define-color nord_dark_font #272727;
+
+
+@define-color bg #282828;
+@define-color critical #BF616A;
+@define-color tray @bg;
+@define-color mode @bg;
+
+@define-color bluetint #448488;
+@define-color bluelight #83a597;
+@define-color magenta-dark #b16185;
+
+
+@define-color font_gruv_normal #ebdbb2;
+@define-color font_gruv_faded #a89985;
+@define-color font_gruv_darker #D8DEE9;
+@define-color font_dark_alternative #655b53;
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0px;
+    min-height: 0;
+}
+
+/* The whole bar */
+#waybar {
+    background: alpha(@bg , 0.95);
+    color: @ligh;
+    font-family: "monospace";
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+/* Each module */
+#battery,
+#clock,
+#cpu,
+#network,
+#pulseaudio,
+#temperature,
+#custom-pacman,
+#mpd,
+#tray,
+#language,
+#custom-power,
+#custom-reboot,
+#custom-suspend,
+#custom-lock,
+#custom-timer,
+#custom-pacman,
+#idle_inhibitor,
+#bluetooth {
+    padding: 0.6em 0.8em;
+}
+
+/* Each module that should blink */
+#temperature,
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Each critical module */
+#cpu.critical,
+#temperature.critical,
+#battery.critical {
+    color: @critical;
+}
+
+/* Each critical that should blink */
+#memory.critical,
+#temperature.critical,
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+/* Each warning */
+#network.disconnected,
+#cpu.warning,
+#temperature.warning,
+#battery.warning {
+    background: @warning;
+    color: @nord_dark_font;
+}
+
+/* Each warning that should blink */
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+/* Adding arrows to boxes */
+#custom-arrow1 {
+    font-size: 2em;
+    color: @bg;
+    background: @bluetint;
+}
+#custom-arrow2 {
+    font-size: 2em;
+    color: @bluetint;
+    background: @font_dark_alternative;
+}
+#custom-arrow3 {
+    font-size: 2em;
+    color: @font_dark_alternative;
+    background: @bg;
+}
+#custom-arrow4 {
+    font-size: 2em;
+    color: @font_gruv_normal;
+    background: @bg;
+}
+#custom-arrow5 {
+    font-size: 2em;
+    color: @font_gruv_normal;
+    background: @bg;
+}
+#custom-arrow6 {
+    font-size: 2em;
+    color: @font_dark_alternative;
+    background: @bg;
+}
+#custom-arrow7 {
+    font-size: 2em;
+    color: @bluetint;
+    background: @font_dark_alternative;
+}
+#custom-arrow8 {
+    font-size: 2em;
+    color: @bg;
+    background: @bluetint;
+}
+
+/* And now modules themselves in their respective order */
+#clock.time {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#clock.date {
+    background: @bg;
+    color: @font_gruv_faded;
+}
+
+#custom-timer {
+    background: @bluetint;
+    color: @font_gruv_normal;
+}
+#custom-language {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#battery {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#custom-pacman {
+    background: @bluetint;
+    color: @font_gruv_normal;
+}
+#idle_inhibitor {
+    background: @font_dark_alternative;
+    color: @font_gruv_normal;
+}
+#mpd {
+    font-size: 0.9em;
+    color: @font_gruv_normal;
+}
+#mpd.paused {
+    color: @font_dark_alternative;
+    font-size: 0.9em;
+}
+/* Workspaces stuff */
+#workspaces {
+}
+#workspaces button {
+    background: @font_gruv_normal;
+    padding: 0em 1em;
+    color: @font_dark_alternative;
+    min-width: 0em;
+}
+#workspaces button.focused {
+    font-weight: bolder; /* Somewhy the bar-wide setting is ignored*/
+}
+#workspaces button.urgent {
+    color: #c9545d;
+    opacity: 1;
+}
+#custom-power,
+#custom-reboot,
+#custom-suspend,
+#custom-lock {
+    background-color: @font_dark_alternative;
+    color: @font_gruv_normal;
+}
+#cpu {
+    background: @bluetint;
+    color: @font_gruv_normal;
+    padding-left: 0em;
+    padding-right: 0.2em;
+}
+#cpu.critical {
+    color: @nord_dark_font;
+    background: @critical;
+}
+#temperature {
+    background-color: @bluetint;
+    color: @font_gruv_normal;
+    padding-right: 0em;
+}
+#temperature.critical {
+    background:  @critical;
+}
+#pulseaudio {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#pulseaudio.muted {
+    color: #fb4833;
+}
+#bluetooth {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#network {
+    background: @bg;
+    color: @font_gruv_faded;
+}
+#tray {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+
+#battery {
+    background: @battery;
+}

@@ -1,0 +1,12 @@
+[Unit]
+Description=Undervolting CPU via amdctl.
+After=network.target network-online.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/bin/amdctl -p0 -v72
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
