@@ -1,7 +1,6 @@
 return{
 	"nvim-treesitter/nvim-treesitter",
 	-- need package "tree-sitter-cli" installed.
-	lazy = false,
 	build = ":TSUpdate",
 	config = function ()
 		require'nvim-treesitter.configs'.setup {
@@ -13,7 +12,5 @@ return{
 				additional_vim_regex_highlighting = true,
 			}
 		}
-
 	end
-
 }
