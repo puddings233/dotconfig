@@ -1,7 +1,7 @@
 local mappings = {
 
 	-- disable arrow keys
-	{ key = '<up>',		func = '',	mod = { 'n', 'i' } },
+	{ key = '<up>',	func = '',	mod = { 'n', 'i' } },
 	{ key = '<right>',	func = '',	mod = { 'n', 'i' } },
 	{ key = '<down>',	func = '',	mod = { 'n', 'i' } },
 	{ key = '<left>',	func = '',	mod = { 'n', 'i' } },
@@ -22,10 +22,13 @@ local mappings = {
 	{ key = "th",	func = ':-tabnext<CR>',	mod = 'n' },
 	{ key = "tk",	func = ':+tabnext<CR>',	mod = 'n' },
 
+	-- quit
+	{ key = 'Q', func = ':lua quit_or_delete_buffer()<CR>', mod = 'n' },
+
 	-- plugins
 	{ key = 'MDP',		func = '<Plug>MarkdownPreview',						mod = 'n' },
 	{ key = 'COQ',		func = ':COQnow<CR>',							mod = 'n' },
-	{ key = '<C-l>',	func = ':Outline<CR>',							mod = 'n' },
+	{key = '<C-f>',	func = ':lua require"joshuto".joshuto({ edit_in_tab = true })<CR>', mod = 'n' },
 
 };
 

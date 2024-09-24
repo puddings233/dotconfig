@@ -12,9 +12,3 @@ vim.opt.tagcase = "followscs"
 vim.opt.ttyfast = true
 
 vim.opt.clipboard:append('unnamedplus')
-
-if vim.g.neovide then
-	vim.o.guifont = "Rec Mono Custom:h15"
-	vim.g.neovide_fullscreen = false
-	vim.g.neovide_remember_window_size = false
-end
