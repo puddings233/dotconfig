@@ -106,6 +106,9 @@ return {
 			}
 		}))
 
+		-- need package "dockerfile-language-server-bin" instealled
+		lsp.dockerls.setup(coq.lsp_ensure_capabilities({}))
+
 		-- need package "nodejs-compose-language-service" instealled
 		lsp.docker_compose_language_service.setup(coq.lsp_ensure_capabilities({}))
 	end,
