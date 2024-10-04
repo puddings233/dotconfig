@@ -1,0 +1,14 @@
+[background]
+path = "/home/puddings233/Pictures/wallpaler/8207838.png"
+fit = "Cover"
+
+[GTK]
+application_prefer_dark_theme = true
+cursor_theme_name = "Nordzy-cursors"
+font_name = "sans-serif 16"
+icon-theme-name = "Qogir-dark"
+theme_name = "Gruvbox-Dark"
+
+[commands]
+reboot = [ "systemctl", "reboot" ]
+poweroff = [ "systemctl", "poweroff" ]
