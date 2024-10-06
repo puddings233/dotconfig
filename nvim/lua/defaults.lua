@@ -1,14 +1,20 @@
-vim.opt.confirm = true
-vim.opt.cursorline = true
-vim.opt.ignorecase = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.smarttab = true
-vim.opt.mouse = v
-vim.opt.number = true
-vim.opt.smartcase = true
-vim.opt.tagcase = "followscs"
-vim.opt.ttyfast = true
+local op = vim.opt
 
-vim.opt.clipboard:append('unnamedplus')
+op.confirm = true
+op.cursorline = true
+op.cursorlineopt = "line"
+op.ignorecase = true
+op.tabstop = 2
+op.softtabstop = 2
+op.shiftwidth = 2
+op.autoindent = true
+op.smarttab = true
+op.mouse = "v"
+op.relativenumber = true
+op.smartcase = true
+op.tagcase = "followscs"
+op.ttyfast = true
+op.wrap = false
+op.signcolumn = "yes:1"
+
+op.clipboard:append('unnamedplus')
