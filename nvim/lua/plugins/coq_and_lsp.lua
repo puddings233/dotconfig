@@ -67,10 +67,12 @@ return {
 			}
 		}))
 
-		-- need package "pyright" instealled.
-		lsp.pyright.setup(coq.lsp_ensure_capabilities({
+		-- need package "basedpyright" instealled.
+		lsp.basedpyright.setup(coq.lsp_ensure_capabilities({
+			cmd_env = {LANG = "zh-cn"},
+			cmd = {"basedpyright-langserver", "--stdio"},
 			settings = {
-				python = {
+				basedpyright = {
 					analysis = {
 						autoImportCompletions = true,
 						autoSearchPaths = true,
