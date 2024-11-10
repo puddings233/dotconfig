@@ -39,7 +39,6 @@ return {
 		local lsp = require ("lspconfig")
 		local coq = require ("coq")
 
-		-- need package "lua-language-server" instealled.
 		lsp.lua_ls.setup(coq.lsp_ensure_capabilities({
 			cmd = {"lua-language-server", "--locale=zh-cn"},
 			settings = {
@@ -67,7 +66,6 @@ return {
 			}
 		}))
 
-		-- need package "basedpyright" instealled.
 		lsp.basedpyright.setup(coq.lsp_ensure_capabilities({
 			cmd_env = {LANG = "zh-cn"},
 			cmd = {"basedpyright-langserver", "--stdio"},
@@ -83,10 +81,8 @@ return {
 			}
 		}))
 
-		-- need package "bash-language-server" instealled.
 		lsp.bashls.setup(coq.lsp_ensure_capabilities({}))
 
-		--need package "ltex-ls-bin" instealled.
 		lsp.ltex.setup(coq.lsp_ensure_capabilities({
 			settings = {
 				ltex = {
@@ -96,7 +92,6 @@ return {
 			},
 		}))
 
-		-- need package "texlab" instealled.
 		lsp.texlab.setup(coq.lsp_ensure_capabilities({
 			settings = {
 				texlab = {
@@ -108,10 +103,8 @@ return {
 			}
 		}))
 
-		-- need package "dockerfile-language-server-bin" instealled
 		lsp.dockerls.setup(coq.lsp_ensure_capabilities({}))
 
-		-- need package "nodejs-compose-language-service" instealled
 		lsp.docker_compose_language_service.setup(coq.lsp_ensure_capabilities({}))
-	end,
+	end
 }

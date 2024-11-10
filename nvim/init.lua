@@ -29,3 +29,6 @@ require("lazy").setup({
 		lazy = false,
 	},
 })
+
+-- mason config should be applied after mason is loaded
+require("mason_config")
