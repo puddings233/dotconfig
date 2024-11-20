@@ -1,0 +1,11 @@
+show=drun
+width=700
+height=500
+prompt=搜索
+normal_window=true
+allow_images=true
+allow_markup=false
+hide-scroll=true
+insensitive=true
+gtk_dark=true
+image_size=40
