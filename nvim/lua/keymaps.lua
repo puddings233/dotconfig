@@ -27,7 +27,6 @@ local mappings = {
 
 	-- plugins
 	{ key =	'RR',			func = ':AsyncRun ',	mod = 'n' },
-	{ key =	'<C-f>',	func = ':lua require"joshuto".joshuto({ edit_in_tab = true })<CR>',	mod = 'n' },
 
 };
 
