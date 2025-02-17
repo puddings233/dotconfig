@@ -46,6 +46,9 @@ keymap = [
 
 # need plugin "smart-enter.yazi"
 # ya pack -a yazi-rs/plugins:smart-enter
+# optional plugin:
+# https://github.com/Sonico98/yazi-prompt.sh
 prepend_keymap = [
 	{ on = "k",    run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+	{ on = ":",    run = 'shell "$SHELL" --block', desc = "Open shell here" },
 ]
