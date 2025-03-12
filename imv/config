@@ -1,0 +1,24 @@
+[options]
+
+# Suppress built-in key bindings, and specify them explicitly in this
+# config file.
+suppress_default_binds = false
+
+[binds]
+q = quit
+
+# Panning
+j = pan 0 -50
+u = pan 0 50
+h = pan 50 0
+k = pan -50 0
+
+# Zooming
+i = zoom 1
+o = zoom -1
+
+# Rotate Clockwise by 90 degrees
+<Ctrl+r> = rotate by 90
+
+# Gif playback
+<space> = toggle_playing
