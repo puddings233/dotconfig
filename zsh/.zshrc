@@ -1,13 +1,13 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # welcome
 echo "We trust you have received the usual lecture from the local System Administrator. It usually boils down to these three things:"
 echo "	#1) Respect the \e[1;31mprivacy\e[0m of others."
 echo "	#2) \e[1;31mThink\e[0m before you type."
 echo "	#3) With great power comes great \e[1;31mresponsibility\e[0m."
+
+# Enable Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # editor
 export EDITOR=nvim
