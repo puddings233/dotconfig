@@ -3,6 +3,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# welcome
+echo "We trust you have received the usual lecture from the local System Administrator. It usually boils down to these three things:"
+echo "	#1) Respect the \e[1;31mprivacy\e[0m of others."
+echo "	#2) \e[1;31mThink\e[0m before you type."
+echo "	#3) With great power comes great \e[1;31mresponsibility\e[0m."
+
 # editor
 export EDITOR=nvim
 
@@ -26,6 +32,19 @@ setopt beep nomatch notify CORRECT HIST_IGNORE_ALL_DUPS
 SPROMPT='Correct: %F{red}%R%f -> %F{green}%r%f [%F{blue}n%fo, %F{blue}y%fes, %F{blue}a%fnnul, %F{blue}e%fdit]? '
 # remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
+
+# alias
+alias C="clear"
+
+# yazi
+function ra() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # initialize modules
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
@@ -56,13 +75,13 @@ zmodload -F zsh/terminfo +p:terminfo
 
 # vi mode keybindings
 # the plugin will auto execute this zvm_after_lazy_keybindings function.
+ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
 function zvm_after_lazy_keybindings() {
 	zvm_bindkey vicmd 'u' history-substring-search-up
 	zvm_bindkey vicmd 'j' history-substring-search-down
 	zvm_bindkey vicmd 'h' vi-backward-char
 	zvm_bindkey vicmd 'k' vi-forward-char
 }
-
 
 # Disable automatic widget re-binding on each precmd. This can be set when
 # zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
