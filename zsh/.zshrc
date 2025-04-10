@@ -38,6 +38,8 @@ emulate sh -c 'source /etc/profile'
 
 # alias
 alias C="clear"
+alias cp="cp --interactive"
+alias mv="mv --interactive"
 
 # yazi
 function ra() {
