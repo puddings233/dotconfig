@@ -4,11 +4,6 @@ echo "	#1) Respect the \e[1;31mprivacy\e[0m of others."
 echo "	#2) \e[1;31mThink\e[0m before you type."
 echo "	#3) With great power comes great \e[1;31mresponsibility\e[0m."
 
-# Enable Powerlevel10k instant prompt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # editor
 export EDITOR=nvim
 
@@ -20,21 +15,6 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 
 # rootless docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-
-# fuck(need package "thefuck")
-eval $(thefuck --alias)
-
-# default config
-HISTFILE=~/.config/zsh/.zsh_history
-HISTSIZE=5000
-SAVEHIST=5000
-setopt beep nomatch notify CORRECT HIST_IGNORE_ALL_DUPS
-# spelling correction prompt.
-SPROMPT='Correct: %F{red}%R%f -> %F{green}%r%f [%F{blue}n%fo, %F{blue}y%fes, %F{blue}a%fnnul, %F{blue}e%fdit]? '
-# remove path separator from WORDCHARS.
-WORDCHARS=${WORDCHARS//[\/]}
-# /etc/profile
-emulate sh -c 'source /etc/profile'
 
 # alias
 alias C="clear"
@@ -50,6 +30,26 @@ function ra() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Enable Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# fuck(need package "thefuck")
+eval $(thefuck --alias)
+
+# default config
+HISTFILE=~/.config/zsh/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
+setopt beep nomatch notify CORRECT HIST_IGNORE_ALL_DUPS
+# spelling correction prompt.
+SPROMPT='Correct: %F{red}%R%f -> %F{green}%r%f [%F{blue}n%fo, %F{blue}y%fes, %F{blue}a%fnnul, %F{blue}e%fdit]? '
+# remove path separator from WORDCHARS.
+WORDCHARS=${WORDCHARS//[\/]}
+# /etc/profile
+emulate sh -c 'source /etc/profile'
 
 # initialize modules
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
