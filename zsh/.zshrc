@@ -14,6 +14,7 @@ export EDITOR=nvim
 
 # gpg & ssh
 export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
 export SSH_AGENT_PID=""
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 
@@ -32,6 +33,8 @@ setopt beep nomatch notify CORRECT HIST_IGNORE_ALL_DUPS
 SPROMPT='Correct: %F{red}%R%f -> %F{green}%r%f [%F{blue}n%fo, %F{blue}y%fes, %F{blue}a%fnnul, %F{blue}e%fdit]? '
 # remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
+# /etc/profile
+emulate sh -c 'source /etc/profile'
 
 # alias
 alias C="clear"
