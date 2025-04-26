@@ -1,9 +1,7 @@
 return {
 	"akinsho/bufferline.nvim",
 	dependencies = 'nvim-tree/nvim-web-devicons',
-	config = function ()
-		vim.opt.termguicolors = true
-		require("bufferline").setup{
+	opts = {
 			options = {
 				diagnostics = "nvim_lsp",
 				diagnostics_indicator = function(count, level, diagnostics_dict, context)
@@ -12,5 +10,4 @@ return {
 				end,
 			}
 		}
-	end
-}
+	}
