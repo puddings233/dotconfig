@@ -6,20 +6,18 @@ return {
 		vim.opt.number = true
 		vim.opt.termguicolors = true
 	end,
-	config = function ()
-		require("modicator").setup({
-			highlights = {
-				defaults = {
-					bold = true,
-				}
-			},
-			integration = {
-				lualine = {
-					enabled = true,
-					mode_section = nil,
-					highlight = "fg",
-				},
+	opts = {
+		highlights = {
+			defaults = {
+				bold = true,
 			}
-		})
-	end
+		},
+		ntegration = {
+			lualine = {
+			enabled = true,
+			mode_section = nil,
+			highlight = "fg",
+			}
+		}
+	}
 }

@@ -26,7 +26,10 @@ local mappings = {
 	{ key = 'Q',	func = ':lua quit_or_delete_buffer()<CR>',	mod = 'n' },
 
 	-- plugins
-	{ key =	'RR',			func = ':AsyncRun ',	mod = 'n' },
+	{ key =	':',			func = ':FineCmdline<CR>',	mod = 'n' },
+	{ key =	'/',			func = ':SearchBoxMatchAll<CR>',	mod = 'n' },
+	{ key =	'?',			func = ':SearchBoxClear<CR>',	mod = 'n' },
+	{ key =	'RR',			func = ':SearchBoxReplace<CR>',	mod = 'n' },
 
 };
 

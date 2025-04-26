@@ -1,8 +1,9 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
-	opts = {},
-	config=function ()
+	---@module "ibl"
+	---@type ibl.config
+	config = function ()
 		local highlight = {
 			"RainbowRed",
 			"RainbowYellow",
@@ -22,6 +23,6 @@ return {
 			vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#D3869B" })
 			vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#689D6A" })
 		end)
-		require("ibl").setup { indent = { highlight = highlight }}
+		require("ibl").setup { indent = { highlight = highlight } }
 	end
 }

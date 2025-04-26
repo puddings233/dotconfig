@@ -72,6 +72,7 @@ return {
 			settings = {
 				basedpyright = {
 					analysis = {
+						typeCheckingMode = "standard",
 						autoImportCompletions = true,
 						autoSearchPaths = true,
 						diagnosticMode = "openFilesOnly",

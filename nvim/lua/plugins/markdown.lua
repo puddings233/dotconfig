@@ -11,13 +11,8 @@ return {
 	end,
 	-- other options, edit the new_ptions variable
 	config = function ()
-		local new_options_markdown = {
-			{ change = "mkdp_theme", to = "light" },
-		}
-		for _,opt in ipairs(new_options_markdown) do
-			vim.g[opt.change] = opt.to
-		end
-		-- special option
+		vim.g.mkdp_theme = "light"
+		vim.g.mkdp_page_title = "${name}.md"
 		vim.g.mkdp_preview_options = { sync_scroll_type = "relative" }
 	end,
 }
