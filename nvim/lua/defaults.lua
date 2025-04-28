@@ -18,3 +18,16 @@ op.wrap = false
 op.signcolumn = "yes:1"
 
 op.clipboard:append('unnamedplus')
+
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+			[vim.diagnostic.severity.HINT] = "󰠠 ",
+		},
+	},
+	virtual_text = true,
+	virtual_lines = false,
+})
