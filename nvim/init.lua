@@ -28,6 +28,9 @@ require("lazy").setup({
 	defaults = {
 		lazy = false,
 	},
+	git = {
+		url_format = "git@github.com:%s.git",
+	}
 })
 
 -- mason config should be applied after mason is loaded
