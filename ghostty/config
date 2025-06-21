@@ -1,0 +1,27 @@
+theme = GruvboxDark
+
+font-family = "monospace"
+font-size = 15.0
+
+background-opacity = 0.95
+background-blur = false
+
+mouse-shift-capture = never
+scrollback-limit = 5242880
+working-directory = home
+window-save-state = never
+confirm-close-surface = false
+
+clipboard-read = ask
+clipboard-write = ask
+
+keybind = clear
+keybind = ctrl+shift+a=select_all
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = ctrl+shift+i=increase_font_size:1
+keybind = ctrl+shift+o=decrease_font_size:1
+keybind = ctrl+shift+page_up=scroll_page_up
+keybind = ctrl+shift+page_down=scroll_page_down
+keybind = ctrl+shift+home=scroll_to_top
+keybind = ctrl+shift+end+=scroll_to_bottom
