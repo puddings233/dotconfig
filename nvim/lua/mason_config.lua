@@ -13,6 +13,7 @@ return {
 			"lua_ls",
 			"basedpyright",
 			"bashls",
+			"rust_analyzer",
 			"ltex",
 			"texlab",
 			"dockerls",

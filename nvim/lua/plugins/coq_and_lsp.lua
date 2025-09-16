@@ -82,6 +82,19 @@ return {
 			}
 		}))
 
+		lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
+			settings = {
+				['rust-analyzer'] = {
+					diagnostics = {
+						enable = false;
+					},
+					procMacro = {
+						enable = true;
+					}
+				}
+			}
+		}))
+
 		lsp.bashls.setup(coq.lsp_ensure_capabilities({}))
 
 		lsp.ltex.setup(coq.lsp_ensure_capabilities({
