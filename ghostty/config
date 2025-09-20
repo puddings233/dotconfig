@@ -1,4 +1,5 @@
-theme = GruvboxDark
+theme = Gruvbox Dark
+custom-shader = cursor_smear.glsl
 
 font-family = "monospace"
 font-size = 15.0
