@@ -71,7 +71,7 @@
 #custom-pacman,
 #mpd,
 #tray,
-#language,
+#power-profiles-daemon,
 #custom-power,
 #custom-reboot,
 #custom-suspend,
@@ -177,7 +177,7 @@
     background: @bluetint;
     color: @font_gruv_normal;
 }
-#custom-language {
+#power-profiles-daemon {
     background: @bg;
     color: @font_gruv_normal;
 }

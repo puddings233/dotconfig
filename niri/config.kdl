@@ -1,0 +1,219 @@
+// autostart
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-sh-at-startup "echo 'Xft.dpi: 120' | xrdb -merge"
+spawn-at-startup "hyprpaper"
+spawn-at-startup "waybar"
+spawn-at-startup "mako"
+spawn-at-startup "wl-clip-persist" "-c" "both"
+spawn-at-startup "wl-paste" "-t" "text" "--watch" "clipman" "store" "--no-persist"
+spawn-at-startup "fcitx5" "-d"
+spawn-at-startup "hypridle"
+spawn-at-startup "asusctl" "profile" "-P" "Quiet"
+spawn-at-startup "pa-notify" "-u" "0"
+
+// environment variables 
+environment {
+	LANG "zh_CN.UTF-8"
+	GTK_THEME "Gruvbox-Dark"
+	QT_QPA_PLATFORM "wayland"
+	QT_QPA_PLATFORMTHEME "qt6ct"
+	QT_AUTO_SCREEN_SCALE_FACTOR "1"
+	QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+	SDL_VIDEODRIVER "wayland"
+	GDK_BACKEND "wayland"
+	CLUTTER_BACKEND "wayland"
+	XDG_SESSION_TYPE "wayland"
+	XDG_SESSION_DESKTOP "Niri"
+	XDG_CURRENT_DESKTOP "Niri"
+	GDK_SCALE "1.25"
+	XCURSOR_THEME "Koishi"
+	XCURSOR_SIZE "64"
+	WLR_RENDER_DRM_DEVICE "/dev/dri/card1"
+	LIBVA_DRIVER_NAME "radeonsi"
+	//VK_ICD_FILENAMES "/usr/share/vulkan/icd.d/radeon_icd.x86_64.json"
+	//VK_ICD_FILENAMES "/usr/share/vulkan/icd.d/nvidia_icd.json"
+	GBM_BACKEND "nvidia-drm"
+	__GLX_VENDOR_LIBRARY_NAME "nvidia"
+	XMODIFIERS "@im=fcitx"
+	QT_IM_MODULE "fcitx"
+	SDL_IM_MODULE "fcitx"
+	GLFW_IM_MODULE "ibus"
+	_JAVA_AWT_WM_NONREPARENTING "1"
+	MOZ_DRM_DEVICE "1"
+	MOZ_ENABLE_WAYLAND "1"
+}
+
+// monitor
+output "eDP-1" {
+	mode "2560x1440@165.000"
+	scale 1.25
+	transform "normal"
+	position x=0 y=0
+	variable-refresh-rate on-demand=true
+	focus-at-startup
+}
+
+output "HDMI-A-1" {
+	off
+}
+
+// input device
+input {
+	mod-key "Super"
+	warp-mouse-to-focus mode="center-xy"
+	focus-follows-mouse
+	keyboard {
+		track-layout "global"
+		xkb {
+			layout "us"
+			options "caps:escape_shifted_capslock"
+		}
+		numlock
+	}
+	touchpad {
+		tap
+		dwt
+		drag true
+		drag-lock
+		accel-profile "flat"
+		scroll-method "two-finger"
+		click-method "clickfinger"
+	}
+	mouse {
+		accel-profile "flat"
+		scroll-method "no-scroll"
+	}
+	trackpoint {
+		off
+	}
+}
+
+// windows position and size
+layout {
+	gaps 10
+	center-focused-column "never"
+	always-center-single-column
+	default-column-display "normal"
+	preset-column-widths {
+		proportion 0.33333
+		proportion 0.5
+		proportion 0.66667
+	}
+	default-column-width { proportion 0.5; }
+	focus-ring {
+		width 5
+		active-gradient from="#458688" to="#83A598" angle=135
+	}
+	border {
+		off
+	}
+	shadow {
+		//off
+	}
+}
+
+// misc
+debug {
+	render-drm-device "/dev/dri/renderD128"
+	//ignore-drm-device "/dev/dri/renderD129"
+}
+cursor {
+	xcursor-theme "Koishi"
+	xcursor-size 64
+	hide-after-inactive-ms 5000
+}
+clipboard {
+	disable-primary
+}
+hotkey-overlay {
+	skip-at-startup
+}
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%Hh%Mm%Ss.png"
+
+// animation
+animations {
+}
+
+// window rules
+
+window-rule {
+	match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+	match app-id=r#"ghostty$"# title="^ghostty-float$"
+	match app-id=r#"mpv$"#
+	match app-id=r#"imv$"#
+
+	default-window-height { proportion 0.75; }
+	default-column-width { proportion 0.75; }
+	open-floating true
+}
+
+window-rule {
+	match app-id=r#"ghostty$"# title="^ghostty-float$"
+
+	default-window-height { proportion 0.5; }
+	default-column-width { proportion 0.5; }
+}
+
+// keybind
+binds {
+
+	// basic
+	Mod+Return repeat=false { spawn "ghostty"; }
+	Mod+Shift+Return repeat=false { spawn "ghostty" "--title=ghostty-float"; }
+	Mod+Shift+L repeat=false { spawn "wlogout" "-b" "5"; }
+	Mod+Q repeat=false { close-window; }
+	Mod+Space repeat=false { spawn "fuzzel"; }
+	Mod+W repeat=false { toggle-overview; }
+
+	// volume, brightness
+	XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; } 
+	XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+	XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+	XF86AudioMicMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+	xf86monbrightnessdown { spawn "brightnessctl" "set" "5%-"; }
+	xf86monbrightnessup { spawn "brightnessctl" "set" "5%+"; }
+
+	// clipboard, screenshot
+	Mod+Shift+Space repeat=false { spawn-sh "clipman pick --tool=CUSTOM --tool-args='fuzzel -d'"; }
+	Mod+F12 repeat=false { screenshot-screen show-pointer=false; }
+	Mod+Shift+F12 repeat=false { screenshot; }
+
+	// change window rule
+	Mod+Shift+F repeat=false { toggle-window-floating; }
+	Mod+Alt+F repeat=false { switch-focus-between-floating-and-tiling; }
+	Mod+Shift+M repeat=false { fullscreen-window; }
+	Mod+Alt+M repeat=false { maximize-column; }
+	Mod+U { focus-window-up; }
+	Mod+J { focus-window-down; }
+	Mod+H { focus-column-left; }
+	Mod+K { focus-column-right; }
+	Mod+Shift+U { move-window-up; }
+	Mod+Shift+J { move-window-down; }
+	Mod+Shift+H { consume-or-expel-window-left; }
+	Mod+Shift+K { consume-or-expel-window-right; }
+	Mod+Alt+U { set-window-height "-10%"; }
+	Mod+Alt+J { set-window-height "+10%"; }
+	Mod+Alt+H { set-column-width "-10%"; }
+	Mod+Alt+K { set-column-width "+10%"; }
+
+	// workspace
+	Mod+1 { focus-workspace 1; }
+	Mod+2 { focus-workspace 2; }
+	Mod+3 { focus-workspace 3; }
+	Mod+4 { focus-workspace 4; }
+	Mod+5 { focus-workspace 5; }
+	Mod+6 { focus-workspace 6; }
+	Mod+7 { focus-workspace 7; }
+	Mod+8 { focus-workspace 8; }
+	Mod+9 { focus-workspace 9; }
+	Mod+SHIFT+1 { move-column-to-workspace 1; }
+	Mod+SHIFT+2 { move-column-to-workspace 2; }
+	Mod+SHIFT+3 { move-column-to-workspace 3; }
+	Mod+SHIFT+4 { move-column-to-workspace 4; }
+	Mod+SHIFT+5 { move-column-to-workspace 5; }
+	Mod+SHIFT+6 { move-column-to-workspace 6; }
+	Mod+SHIFT+7 { move-column-to-workspace 7; }
+	Mod+SHIFT+8 { move-column-to-workspace 8; }
+	Mod+SHIFT+9 { move-column-to-workspace 9; }
+}

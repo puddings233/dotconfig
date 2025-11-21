@@ -1,15 +1,15 @@
 {
 	"layer": "top",
 	"position": "top",
-	"modules-left": ["clock#time", "clock#date", "hyprland/language", "custom/arrow1", "custom/timer", "custom/pacman", "custom/arrow2", "idle_inhibitor", "custom/arrow3", "mpd"],
-	"modules-center": ["custom/arrow4", "hyprland/workspaces", "custom/arrow5"],
-	"modules-right": ["custom/arrow6", "group/power", "custom/arrow7",  "temperature", "cpu", "custom/arrow8", "network", "battery", "bluetooth", "pulseaudio", "tray"],
-	"hyprland/workspaces": {
+	"modules-left": ["clock#time", "clock#date", "power-profiles-daemon", "custom/arrow1", "custom/timer", "custom/pacman", "custom/arrow2", "idle_inhibitor", "custom/arrow3", "mpd"],
+	"modules-center": ["custom/arrow4", "niri/workspaces", "custom/arrow5"],
+	"modules-right": ["custom/arrow6", "custom/power", "custom/arrow7",  "temperature", "cpu", "custom/arrow8", "network", "battery", "bluetooth", "pulseaudio", "tray"],
+	"niri/workspaces": {
 		"all-outputs": true,
 		"active-only": false,
 		"format": "{icon}",
 		"format-icons": {
-			"active": "󱘉",
+			"active": "󰮕",
 			"1": "󰲡",
 			"2": "󰲣",
 			"3": "󰲥",
@@ -26,10 +26,15 @@
 		"format-connected": "󰂱 {num_connections}",
 		"format-connected-battery": "󰂱 {num_connections} 󰥂 {device_battery_percentage}%"
 	},
-	"hyprland/language": {
-		"format": " {}",
-		"max-length": 6,
-		"min-length": 4
+	"power-profiles-daemon": {
+		"format": "{icon}",
+		"tooltip-format": "Power profile: {profile}",
+		"tooltip": true,
+		"format-icons": {
+			"performance": "<span color=\"#fb4833\"> </span>",
+			"balanced": "<span color=\"#fb4833\"> </span>",
+			"power-saver": "<span color=\"#fb4833\"> </span>"
+		}
 	},
 	"idle_inhibitor": {
 		"format": "{icon}",
@@ -47,9 +52,20 @@
 		"tooltip": false
 	},
 	"clock#date": {
+		"locale": "en_SG.UTF-8",
 		"interval": 60,
 		"format": " {:%m-%e %a}",
-		"tooltip": false
+		"tooltip-format": "<span font='monospace 14'><tt><small>{calendar}</small></tt></span>",
+		"calendar": {
+			"mode": "year",
+			"mode-mon-col": 3,
+			"format": {
+				"months": "<span color='#fabd2f'><b>{}</b></span>",
+				"days": "<span color='#ebdbb2'><b>{}</b></span>",
+				"weekdays": "<span color='#b8bb26'><b>{}</b></span>",
+				"today": "<span color='#fb4934'><b><u>{}</u></b></span>"
+			}
+		}
 	},
 	"temperature": {
 		"interval": "1",
@@ -63,14 +79,12 @@
 	},
 	"cpu": {
 		"interval": 10,
-		"format": " {usage}% 󰊕 {avg_frequency}GHz "
+		"format": "  {usage}% "
 	},
 	"network": {
-		"format-wifi": "󰖩 Wifi",
-		"format-ethernet": "󰲝 Ether",
-		"format-disconnected": "󰖪 Disconnected",
-		"tooltip-format-wifi": "{essid}:{ipaddr}/{cidr}",
-		"tooltip-format-ethernet": "Ether:{ipaddr}/{cidr}",
+		"format": "󰱔 Online",
+		"format-disconnected": "󰱟 Offline",
+		"tooltip-format": "{ipaddr}/{cidr}",
 		"tooltip-format-disconnected": "󰱭"
 	},
 	"battery": {
@@ -93,7 +107,8 @@
 			"default": [" ", " ", " "]
 		},
 		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
-		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+		"on-click": "exec ghostty -e wiremix"
 	},
 	"custom/pacman": {
 		"format": "{} {icon}",
@@ -105,39 +120,10 @@
 		"exec-if": "which waybar-module-pacman-updates",
 		"exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
 	},
-	"group/power": {
-		"orientation": "inherit",
-		"drawer": {
-			"transition-duration": 500,
-			"children-class": "not-power",
-			"transition-left-to-right": false
-		},
-		"modules": [
-			"custom/power",
-			"custom/reboot",
-			"custom/suspend",
-			"custom/lock"
-		]
-	},
 	"custom/power": {
 		"format": "",
 		"tooltip": false,
-		"on-click": "systemctl poweroff"
-	},
-	"custom/reboot": {
-		"format": "󰜉",
-		"tooltip": false,
-		"on-click": "systemctl reboot"
-	},
-	"custom/suspend": {
-		"format": "󰒲",
-		"tooltip": false,
-		"on-click": "systemctl suspend"
-	},
-	"custom/lock": {
-		"format": "󰍁",
-		"tooltip": false,
-		"on-click": "swaylock"
+		"on-click": "wlogout -b 5"
 	},
 	"mpd": {
 		"format": "{stateIcon} {artist}-{title} ",
@@ -172,11 +158,11 @@
 		"tooltip": false
 	},
 	"custom/arrow4": {
-		"format": "",
+		"format": "<span font='monospace 30'><tt><small></small></tt></span>",
 		"tooltip": false
 	},
 	"custom/arrow5": {
-		"format": "",
+		"format": "<span font='monospace 30'><tt><small></small></tt></span>",
 		"tooltip": false
 	},
 	"custom/arrow6": {

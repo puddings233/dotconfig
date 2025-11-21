@@ -1,0 +1,114 @@
+# Main Options
+remote = "pipewire-0"
+mouse = false
+peaks = "auto"
+char_set = "default"
+theme = "default"
+tab = "playback"
+max_volume_percent = 100.0
+enforce_max_volume = true
+
+# Keybindings
+keybindings = [
+ { key = { Char = "Q" }, action = "Exit" },
+ { key = { Char = "m" }, action = "ToggleMute" },
+ { key = { Char = "d" }, action = "SetDefault" },
+ { key = { Char = "k" }, action = { SetRelativeVolume = 0.05 } },
+ { key = { Char = "h" }, action = { SetRelativeVolume = -0.05 } },
+ { key = "Enter", action = "ActivateDropdown" },
+ { key = "Esc", action = "CloseDropdown" },
+ { key = { Char = "j" }, action = "MoveDown" },
+ { key = { Char = "u" }, action = "MoveUp" },
+ { key = { Char = "K" }, action = "TabRight" },
+ { key = { Char = "H" }, action = "TabLeft" },
+ { key = { Char = "`" }, action = { SetAbsoluteVolume = 0.00 } },
+ { key = { Char = "1" }, action = { SetAbsoluteVolume = 0.10 } },
+ { key = { Char = "2" }, action = { SetAbsoluteVolume = 0.20 } },
+ { key = { Char = "3" }, action = { SetAbsoluteVolume = 0.30 } },
+ { key = { Char = "4" }, action = { SetAbsoluteVolume = 0.40 } },
+ { key = { Char = "5" }, action = { SetAbsoluteVolume = 0.50 } },
+ { key = { Char = "6" }, action = { SetAbsoluteVolume = 0.60 } },
+ { key = { Char = "7" }, action = { SetAbsoluteVolume = 0.70 } },
+ { key = { Char = "8" }, action = { SetAbsoluteVolume = 0.80 } },
+ { key = { Char = "9" }, action = { SetAbsoluteVolume = 0.90 } },
+ { key = { Char = "0" }, action = { SetAbsoluteVolume = 1.00 } },
+ { key = { Char = "?" }, action = "Help" },
+ { key = { Char = "q"} , action = "Nothing" },
+ { key = { Char = "c"} , action = "Nothing" },
+ { key = { Char = "L"} , action = "Nothing" },
+ { key = { Char = "c"} , action = "Nothing" },
+
+ # Disable default bindings.
+ { key = "Up", action = "Nothing" },
+ { key = "Down", action = "Nothing" },
+ { key = "Right", action = "Nothing" },
+ { key = "Left", action = "Nothing" },
+ { key = "Tab", action = "Nothing" },
+ { key = "BackTab", action = "Nothing" },
+ { key = "BackTab", modifiers = "SHIFT", action = "Nothing" },
+]
+
+# Names
+[names]
+stream = [ "{node:application.name} ({node:node.rate}Hz): {node:media.name}" ]
+endpoint = [ "{device:device.nick}" ]
+device = [ "{device:device.nick} ({device:device.description})" ]
+
+# Themes
+[themes.default]
+default_device = { fg = "LightRed" }
+default_stream = { fg = "LightRed" }
+selector = { fg = "LightCyan" }
+tab = { }
+tab_selected = { add_modifier = "BOLD", fg = "LightCyan" }
+tab_marker = { fg = "LightCyan" }
+list_more = { fg = "DarkGray" }
+node_title = {  add_modifier = "BOLD", fg = "LightYellow"}
+node_target = { }
+volume = { fg = "LightBlue" }
+volume_empty = { fg = "Red" }
+volume_filled = { fg = "LightGreen"}
+meter_inactive = { fg = "DarkGray" }
+meter_active = { fg = "LightGreen" }
+meter_overload = { fg = "Red" }
+meter_center_inactive = { fg = "White" }
+meter_center_active = { fg = "Green" }
+config_device = { }
+config_profile = { }
+dropdown_icon = { }
+dropdown_border = { }
+dropdown_item = { }
+dropdown_selected = { fg = "LightCyan", add_modifier = "REVERSED" }
+dropdown_more = { fg = "DarkGray" }
+help_border = { }
+help_item = { }
+help_more = { fg = "DarkGray" }
+
+# Character Sets
+[char_sets.default]
+default_device = ""
+default_stream = ""
+selector_top = "░"
+selector_middle = "▒"
+selector_bottom = "░"
+tab_marker_left = "["
+tab_marker_right = "]"
+list_more = "•••"
+volume_empty = ""
+volume_filled = ""
+meter_left_inactive = "󱑽"
+meter_left_active = "󱑽"
+meter_left_overload = "󱑽"
+meter_right_inactive = "󱑽"
+meter_right_active = "󱑽"
+meter_right_overload = "󱑽"
+meter_center_left_inactive = ""
+meter_center_left_active = ""
+meter_center_right_inactive = ""
+meter_center_right_active = ""
+dropdown_icon = "▼"
+dropdown_selector = ">"
+dropdown_more = "•••"
+dropdown_border = "Rounded"
+help_more = "•••"
+help_border = "Rounded"
