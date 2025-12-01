@@ -8,7 +8,6 @@ spawn-at-startup "wl-clip-persist" "-c" "both"
 spawn-at-startup "wl-paste" "-t" "text" "--watch" "clipman" "store" "--no-persist"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "hypridle"
-spawn-at-startup "asusctl" "profile" "-P" "Quiet"
 spawn-at-startup "pa-notify" "-u" "0"
 
 // environment variables 
@@ -27,7 +26,7 @@ environment {
 	XDG_CURRENT_DESKTOP "Niri"
 	GDK_SCALE "1.25"
 	XCURSOR_THEME "Koishi"
-	XCURSOR_SIZE "64"
+	XCURSOR_SIZE "32"
 	WLR_RENDER_DRM_DEVICE "/dev/dri/card1"
 	LIBVA_DRIVER_NAME "radeonsi"
 	//VK_ICD_FILENAMES "/usr/share/vulkan/icd.d/radeon_icd.x86_64.json"
@@ -94,11 +93,6 @@ layout {
 	center-focused-column "never"
 	always-center-single-column
 	default-column-display "normal"
-	preset-column-widths {
-		proportion 0.33333
-		proportion 0.5
-		proportion 0.66667
-	}
 	default-column-width { proportion 0.5; }
 	focus-ring {
 		width 5
@@ -108,18 +102,18 @@ layout {
 		off
 	}
 	shadow {
-		//off
+		off
 	}
 }
 
 // misc
 debug {
 	render-drm-device "/dev/dri/renderD128"
-	//ignore-drm-device "/dev/dri/renderD129"
+	ignore-drm-device "/dev/dri/renderD129"
 }
 cursor {
 	xcursor-theme "Koishi"
-	xcursor-size 64
+	xcursor-size 32
 	hide-after-inactive-ms 5000
 }
 clipboard {
@@ -130,9 +124,26 @@ hotkey-overlay {
 }
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%Hh%Mm%Ss.png"
-
-// animation
-animations {
+gestures {
+	hot-corners {
+		off
+	}
+}
+recent-windows {
+	highlight {
+		active-color "#928374"
+		urgent-color "#fb4934"
+		padding 15
+		corner-radius 0
+	}
+	previews {
+		max-height 540
+		max-scale 1
+	}
+	binds {
+		Mod+Tab { next-window; }
+		Mod+Shift+Tab { previous-window; }
+	}
 }
 
 // window rules
