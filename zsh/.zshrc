@@ -36,9 +36,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# fuck(need package "thefuck")
-eval $(thefuck --alias)
-
 # default config
 HISTFILE=~/.config/zsh/.zsh_history
 HISTSIZE=5000
@@ -80,12 +77,29 @@ zmodload -F zsh/terminfo +p:terminfo
 
 # vi mode keybindings
 # the plugin will auto execute this zvm_after_lazy_keybindings function.
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
 ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
 function zvm_after_lazy_keybindings() {
 	zvm_bindkey vicmd 'u' history-substring-search-up
 	zvm_bindkey vicmd 'j' history-substring-search-down
 	zvm_bindkey vicmd 'h' vi-backward-char
 	zvm_bindkey vicmd 'k' vi-forward-char
+	zvm_bindkey visual 'h' vi-backward-char
+	zvm_bindkey visual 'k' vi-forward-char
+
+	#tab-completion menu keybindings
+	zstyle ':completion:*' menu select
+	zmodload zsh/complist
+	zvm_bindkey menuselect 'u' vi-up-line-or-history
+	zvm_bindkey menuselect 'j' vi-down-line-or-history
+	zvm_bindkey menuselect 'h' vi-backward-char
+	zvm_bindkey menuselect 'k' vi-forward-char
+
+	zvm_bindkey vicmd 'LL' undo
+	zvm_bindkey vicmd 'p' zvm_paste_clipboard_after
+	zvm_bindkey vicmd 'P' zvm_paste_clipboard_before
+	zvm_bindkey visual 'p' zvm_visual_paste_clipboard
+	zvm_bindkey visual 'P' zvm_visual_paste_clipboard
 }
 
 # Disable automatic widget re-binding on each precmd. This can be set when
