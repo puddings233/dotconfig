@@ -12,7 +12,6 @@ spawn-at-startup "pa-notify" "-u" "0"
 
 // environment variables 
 environment {
-	LANG "zh_CN.UTF-8"
 	GTK_THEME "Gruvbox-Dark"
 	QT_QPA_PLATFORM "wayland"
 	QT_QPA_PLATFORMTHEME "qt6ct"

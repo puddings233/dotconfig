@@ -45,8 +45,6 @@ setopt beep nomatch notify CORRECT HIST_IGNORE_ALL_DUPS
 SPROMPT='Correct: %F{red}%R%f -> %F{green}%r%f [%F{blue}n%fo, %F{blue}y%fes, %F{blue}a%fnnul, %F{blue}e%fdit]? '
 # remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
-# /etc/profile
-emulate sh -c 'source /etc/profile'
 
 # initialize modules
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
