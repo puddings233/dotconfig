@@ -1,0 +1,45 @@
+[general]
+live_config_reload = false
+import = [ "~/.config/alacritty/gruvbox_dark.toml" ]
+
+[window]
+decorations = "None"
+opacity = 1.0
+blur = false
+decorations_theme_variant = "Dark"
+
+[scrolling]
+history = 20000
+multiplier = 5
+
+[font]
+size = 15.0
+normal = { family = "monospace", style = "Regular" }
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+builtin_box_drawing = false
+
+[bell]
+duration = 0
+command = "None"
+
+[cursor]
+style = { shape = "Block", blinking = "Never" }
+vi_mode_style = { shape = "Block", blinking = "Never" }
+unfocused_hollow = true
+
+[terminal]
+osc52 = "Disabled"
+
+[keyboard]
+bindings = [
+{ key = "v", mods= "Control|Shift", action= "ToggleViMode" },
+{ key = "i", mods= "Control|Shift", action= "IncreaseFontSize" },
+{ key = "o", mods= "Control|Shift", action= "DecreaseFontSize" },
+
+{ key = "u", mode= "Vi", action= "Up" },
+{ key = "j", mode= "Vi", action= "Down" },
+{ key = "h", mode= "Vi", action= "Left" },
+{ key = "k", mode= "Vi", action= "Right" },
+]

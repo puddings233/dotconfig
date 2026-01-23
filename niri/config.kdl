@@ -64,7 +64,7 @@ input {
 		track-layout "global"
 		xkb {
 			layout "us"
-			options "caps:escape_shifted_capslock"
+			//options "caps:escape_shifted_capslock"
 		}
 		numlock
 	}
@@ -149,7 +149,7 @@ recent-windows {
 
 window-rule {
 	match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-	match app-id=r#"ghostty$"# title="^ghostty-float$"
+	match app-id=r#"Alacritty$"# title="^Alacritty-float$"
 	match app-id=r#"mpv$"#
 	match app-id=r#"imv$"#
 	match app-id=r#"vspolkit$"#
@@ -160,7 +160,7 @@ window-rule {
 }
 
 window-rule {
-	match app-id=r#"ghostty$"# title="^ghostty-float$"
+	match app-id=r#"Alacritty$"# title="^Alacritty-float$"
 	match app-id=r#"vspolkit$"#
 
 	default-window-height { proportion 0.5; }
@@ -178,8 +178,8 @@ window-rule {
 binds {
 
 	// basic
-	Mod+Return repeat=false { spawn "ghostty"; }
-	Mod+Shift+Return repeat=false { spawn "ghostty" "--title=ghostty-float"; }
+	Mod+Return repeat=false { spawn "alacritty"; }
+	Mod+Shift+Return repeat=false { spawn "alacritty" "--title=Alacritty-float"; }
 	Mod+Shift+L repeat=false { spawn "wlogout" "-b" "5"; }
 	Mod+Q repeat=false { close-window; }
 	Mod+Space repeat=false { spawn "fuzzel"; }
