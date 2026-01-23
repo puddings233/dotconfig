@@ -1,5 +1,5 @@
 // autostart
-spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "/usr/lib/vspolkit"
 spawn-sh-at-startup "echo 'Xft.dpi: 120' | xrdb -merge"
 spawn-at-startup "hyprpaper"
 spawn-at-startup "waybar"
@@ -152,6 +152,7 @@ window-rule {
 	match app-id=r#"ghostty$"# title="^ghostty-float$"
 	match app-id=r#"mpv$"#
 	match app-id=r#"imv$"#
+	match app-id=r#"vspolkit$"#
 
 	default-window-height { proportion 0.75; }
 	default-column-width { proportion 0.75; }
@@ -160,9 +161,17 @@ window-rule {
 
 window-rule {
 	match app-id=r#"ghostty$"# title="^ghostty-float$"
+	match app-id=r#"vspolkit$"#
 
 	default-window-height { proportion 0.5; }
 	default-column-width { proportion 0.5; }
+}
+
+window-rule {
+	match app-id=r#"vspolkit$"#
+
+	default-window-height { proportion 0.15; }
+	default-column-width { proportion 0.2; }
 }
 
 // keybind
