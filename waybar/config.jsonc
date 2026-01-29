@@ -1,7 +1,7 @@
 {
 	"layer": "top",
 	"position": "top",
-	"modules-left": ["clock#time", "clock#date", "power-profiles-daemon", "custom/arrow1", "custom/timer", "custom/pacman", "custom/arrow2", "idle_inhibitor", "custom/arrow3", "mpd"],
+	"modules-left": ["clock#time", "clock#date", "power-profiles-daemon", "custom/arrow1", "custom/arch_news", "custom/pacman", "custom/arrow2", "idle_inhibitor", "custom/arrow3", "mpd"],
 	"modules-center": ["custom/arrow4", "niri/workspaces", "custom/arrow5"],
 	"modules-right": ["custom/arrow6", "custom/power", "custom/arrow7",  "temperature", "cpu", "custom/arrow8", "network", "battery", "bluetooth", "pulseaudio", "tray"],
 	"niri/workspaces": {
@@ -9,16 +9,15 @@
 		"active-only": false,
 		"format": "{icon}",
 		"format-icons": {
-			"active": "󰮕",
-			"1": "󰲡",
-			"2": "󰲣",
-			"3": "󰲥",
-			"4": "󰲧",
-			"5": "󰲩",
-			"6": "󰲫",
-			"7": "󰲭",
-			"8": "󰲯",
-			"9": "󰲱"
+			"1": "1",
+			"2": "2",
+			"3": "3",
+			"4": "4",
+			"5": "5",
+			"6": "6",
+			"7": "7",
+			"8": "8",
+			"9": "9"
 		}
 	},
 	"bluetooth": {
@@ -31,9 +30,9 @@
 		"tooltip-format": "Power profile: {profile}",
 		"tooltip": true,
 		"format-icons": {
-			"performance": "<span color=\"#fb4833\"> </span>",
-			"balanced": "<span color=\"#fb4833\"> </span>",
-			"power-saver": "<span color=\"#fb4833\"> </span>"
+			"performance": "<span color=\"#fb4833\"></span>",
+			"balanced": "<span color=\"#fb4833\"></span>",
+			"power-saver": "<span color=\"#fb4833\"></span>"
 		}
 	},
 	"idle_inhibitor": {
@@ -71,7 +70,7 @@
 		"interval": "1",
 		"hwmon-path": "/sys/class/thermal/thermal_zone0/hwmon1/temp1_input",
 		"critical-threshold": 90,
-		"format-critical": "  {temperatureC}°C",
+		"format-critical": " {temperatureC}°C",
 		"format": "{icon} {temperatureC}°C",
 		"format-icons": ["", "", ""],
 		"max-length": 8,
@@ -79,7 +78,7 @@
 	},
 	"cpu": {
 		"interval": 10,
-		"format": "  {usage}% "
+		"format": " {usage}% "
 	},
 	"network": {
 		"format": "󰱔 Online",
@@ -95,28 +94,24 @@
 		"format-icons": ["", "", "", "", ""]
 	},
 	"pulseaudio": {
-		"format": "{icon}{volume}% {format_source}",
+		"format": "{icon} {volume}% {format_source}",
 		"format-bluetooth": "󰥰 {volume}% {format_source}",
-		"format-bluetooth-muted": "󰗿  {format_source}",
-		"format-muted": "󰖁  {format_source}",
-		"format-source": "{volume}%",
+		"format-bluetooth-muted": "󰗿 {format_source}",
+		"format-muted": "󰖁 {format_source}",
+		"format-source": " {volume}%",
 		"format-source-muted": "<span color=\"#fb4833\"></span>",
 		"format-icons": {
-			"headphone": "󰋋 ",
-			"headset": "󰋎 ",
-			"default": [" ", " ", " "]
+			"headphone": "󰋋",
+			"headset": "󰋎",
+			"default": ["", "", ""]
 		},
 		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
 		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
-		"on-click": "exec ghostty -e wiremix"
+		"on-click": "exec alacritty --command wiremix"
 	},
 	"custom/pacman": {
-		"format": "{} {icon}",
+		"format": "󰏓 {}",
 		"return-type": "json",
-		"format-icons": {
-			"has-updates": "󱥰",
-			"updated": "󰮯"
-		},
 		"exec-if": "which waybar-module-pacman-updates",
 		"exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
 	},
@@ -136,15 +131,12 @@
 			"playing": ""
 		}
 	},
-	"custom/timer": {
-		"tooltip": true,
-		"return-type": "json",
-		"exec": "$HOME/.config/waybar/script/waybar-timer.sh check",
-		"on-click": "$HOME/.config/waybar/script/waybar-timer.sh minute_dialog",
-		"on-click-right": "$HOME/.config/waybar/script/waybar-timer.sh datetime_dialog",
-		"on-click-middle": "$HOME/.config/waybar/script/waybar-timer.sh stop",
-		"interval": 1
-	},
+  "custom/arch_news": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "env -i ~/.config/waybar/script/arch_news.sh 7",
+    "interval": 3600
+  },
 	"custom/arrow1": {
 		"format": "",
 		"tooltip": false
@@ -158,11 +150,11 @@
 		"tooltip": false
 	},
 	"custom/arrow4": {
-		"format": "<span font='monospace 30'><tt><small></small></tt></span>",
+		"format": "",
 		"tooltip": false
 	},
 	"custom/arrow5": {
-		"format": "<span font='monospace 30'><tt><small></small></tt></span>",
+		"format": "",
 		"tooltip": false
 	},
 	"custom/arrow6": {
