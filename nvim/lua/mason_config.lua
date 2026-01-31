@@ -14,8 +14,6 @@ return {
 			"basedpyright",
 			"bashls",
 			"rust_analyzer",
-			"ltex",
-			"texlab",
 			"dockerls",
 			"docker_compose_language_service",
 		},

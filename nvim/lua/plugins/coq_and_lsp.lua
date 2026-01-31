@@ -2,8 +2,9 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		-- if ":COQdeps" failed, you can "cd" to install directory of COQ and run "python3 -m coq deps"
-    { "ms-jpq/coq_nvim", branch = "coq" },
-    { 'ms-jpq/coq.thirdparty', branch = "3p" }
+		{ "ms-jpq/coq_nvim", branch = "coq" },
+		{ "ms-jpq/coq.artifacts", branch = "artifacts" },
+		{ 'ms-jpq/coq.thirdparty', branch = "3p" }
   },
 
 	init = function ()
@@ -36,15 +37,39 @@ return {
 		}
 
 		-- lsp settings
-		local lsp = require ("lspconfig")
-		local coq = require ("coq")
+		local coq = require "coq"
 
-		lsp.lua_ls.setup(coq.lsp_ensure_capabilities({
-			cmd = {"lua-language-server", "--locale=zh-cn"},
+		vim.lsp.config("lua_ls", coq.lsp_ensure_capabilities({
+			on_init = function(client)
+				if client.workspace_folders then
+					local path = client.workspace_folders[1].name
+					if
+						path ~= vim.fn.stdpath("config")
+						and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+					then
+						return
+					end
+				end
+				client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+					runtime = {
+						version = "LuaJIT",
+						path = {
+							"lua/?.lua",
+							"lua/?/init.lua",
+						},
+					},
+					workspace = {
+						checkThirdParty = false,
+						library = {
+							vim.env.VIMRUNTIME,
+						},
+					},
+				})
+			end,
 			settings = {
 				Lua = {
 					runtime = {
-						version = "Lua 5.4"
+						version = "LuaJIT"
 					},
 					completion = {
 						enable = true,
@@ -55,18 +80,13 @@ return {
 					hint = {
 						enable = true,
 						setType = true,
-					},
-					workspace = {
-						checkThirdParty = "Disable",
-						library = {
-							vim.env.VIMRUNTIME,
-						}
 					}
-				}
-			}
+				},
+			},
+			cmd = {"lua-language-server", "--locale=zh-cn"}
 		}))
 
-		lsp.basedpyright.setup(coq.lsp_ensure_capabilities({
+		vim.lsp.config("basedpyright", coq.lsp_ensure_capabilities({
 			cmd_env = {LANG = "zh-cn"},
 			cmd = {"basedpyright-langserver", "--stdio"},
 			settings = {
@@ -82,7 +102,7 @@ return {
 			}
 		}))
 
-		lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
+		vim.lsp.config("rust_analyzer", coq.lsp_ensure_capabilities({
 			settings = {
 				['rust-analyzer'] = {
 					diagnostics = {
@@ -95,30 +115,10 @@ return {
 			}
 		}))
 
-		lsp.bashls.setup(coq.lsp_ensure_capabilities({}))
+		vim.lsp.config("bash_ls", coq.lsp_ensure_capabilities({}))
 
-		lsp.ltex.setup(coq.lsp_ensure_capabilities({
-			settings = {
-				ltex = {
-					language = "en",
-					checkFrequency = "save",
-				},
-			},
-		}))
+		vim.lsp.config("dockerls", coq.lsp_ensure_capabilities({}))
 
-		lsp.texlab.setup(coq.lsp_ensure_capabilities({
-			settings = {
-				texlab = {
-					build = {
-						executable = "xelatex",
-						args = {},
-					}
-				},
-			}
-		}))
-
-		lsp.dockerls.setup(coq.lsp_ensure_capabilities({}))
-
-		lsp.docker_compose_language_service.setup(coq.lsp_ensure_capabilities({}))
+		vim.lsp.config("docker_compose_language_service", coq.lsp_ensure_capabilities({}))
 	end
 }
