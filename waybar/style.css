@@ -57,7 +57,7 @@
     background: alpha(@bg , 0.95);
     color: @ligh;
     font-family: "waybar";
-    font-size: 12pt;
+    font-size: 10pt;
     font-weight: bold;
 }
 
@@ -208,7 +208,6 @@
     background: @font_gruv_normal;
     color: @font_dark_alternative;
     min-width: 0em;
-    font-size: 18pt;
 }
 #workspaces button.focused {
     font-weight: bolder;

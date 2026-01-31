@@ -9,15 +9,16 @@
 		"active-only": false,
 		"format": "{icon}",
 		"format-icons": {
-			"1": "1",
-			"2": "2",
-			"3": "3",
-			"4": "4",
-			"5": "5",
-			"6": "6",
-			"7": "7",
-			"8": "8",
-			"9": "9"
+			"1": "<span><tt><big>󰫶</big></tt></span>",
+			"2": "<span><tt><big>󱂉</big></tt></span>",
+			"3": "<span><tt><big>󱂊</big></tt></span>",
+			"4": "<span><tt><big>󱂋</big></tt></span>",
+			"5": "<span><tt><big>󰬃</big></tt></span>",
+			"6": "<span><tt><big>󱂍</big></tt></span>",
+			"7": "<span><tt><big>󱂎</big></tt></span>",
+			"8": "<span><tt><big>󱂏</big></tt></span>",
+			"9": "<span><tt><big>󱂐</big></tt></span>",
+			"active": "<span><tt><big></big></tt></span>"
 		}
 	},
 	"bluetooth": {
