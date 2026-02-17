@@ -34,6 +34,7 @@ environment {
 	__GLX_VENDOR_LIBRARY_NAME "nvidia"
 	XMODIFIERS "@im=fcitx"
 	QT_IM_MODULE "fcitx"
+	QT_IM_MODULES "wayland;fcitx"
 	SDL_IM_MODULE "fcitx"
 	GLFW_IM_MODULE "ibus"
 	_JAVA_AWT_WM_NONREPARENTING "1"
@@ -148,7 +149,7 @@ recent-windows {
 // window rules
 
 window-rule {
-	match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+	match app-id=r#"zen-browser$"# title="^画中画$"
 	match app-id=r#"Alacritty$"# title="^Alacritty-float$"
 	match app-id=r#"mpv$"#
 	match app-id=r#"imv$"#
@@ -195,6 +196,7 @@ binds {
 
 	// clipboard, screenshot
 	Mod+Shift+Space repeat=false { spawn-sh "clipman pick --tool=CUSTOM --tool-args='fuzzel -d'"; }
+	Mod+Alt+Space repeat=false { spawn-sh "dmenu-emoji | fuzzel --dmenu | awk '{print $1}' | wl-copy"; }
 	Mod+F12 repeat=false { screenshot-screen show-pointer=false; }
 	Mod+Shift+F12 repeat=false { screenshot; }
 
