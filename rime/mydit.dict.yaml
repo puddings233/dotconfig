@@ -7,5 +7,33 @@ import_tables:
   - cn_dicts/ext      # 扩展词库
   - cn_dicts/tencent  # 腾讯词向量（大词库，部署时间较长）
   - cn_dicts/others   # 一些杂项
-  - moegirl           # 萌娘百科 需要fcitx5-pinyin-moegirl-rime
+  - moegirl           # 萌娘百科 需要rime-pinyin-moegirl
 ...
+
+A	A
+B	B
+C	C
+D	D
+E	E
+F	F
+G	G
+H	H
+I	I
+J	J
+K	K
+L	L
+M	M
+N	N
+O	O
+P	P
+Q	Q
+R	R
+S	S
+T	T
+U	U
+V	V
+W	W
+X	X
+Y	Y
+Z	Z
+

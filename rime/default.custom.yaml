@@ -6,11 +6,10 @@ patch:
   __patch:
     # 候选词
     menu/page_size: 9
-    key_binder/bindings:
-      # , . 翻页
-      - { when: paging, accept: comma, send: Page_Up }
-      - { when: has_menu, accept: period, send: Page_Down }
-      # 切换中英
-      - { when: always, accept: Control+Alt+1, toggle: ascii_mode }
-      # 切换简繁
-      - { when: always, accept: Control+Shift+2, toggle: traditionalization }
+    key_binder:
+      select_first_character: ""
+      select_last_character: ""
+      bindings:
+      # 翻页
+      - { when: has_menu, accept: bracketleft, send: Page_Up }
+      - { when: has_menu, accept: bracketright, send: Page_Down }
