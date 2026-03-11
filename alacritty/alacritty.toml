@@ -42,4 +42,7 @@ bindings = [
 { key = "j", mode= "Vi", action= "Down" },
 { key = "h", mode= "Vi", action= "Left" },
 { key = "k", mode= "Vi", action= "Right" },
+
+{ key = "y", mode= "Vi", action= "Copy" },
+{ key = "p", mode= "Vi", action= "Paste" },
 ]
