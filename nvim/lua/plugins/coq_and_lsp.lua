@@ -14,10 +14,8 @@ return {
 	config = function ()
 		-- coq settings
 		vim.g.coq_settings = {
-			xdg = true,
 			keymap = {
 				recommended = false,
-				jump_to_mark = "<c-e>",
 			}
 		}
 
@@ -30,7 +28,6 @@ return {
 		for _, mapping in ipairs(coq_keymap) do
 			vim.keymap.set("i", mapping.key, mapping.func, { noremap = true, silent = true, expr = true });
 		end
-
 		-- coq 3p settings
 		require("coq_3p") {
 			{ src = "bc", short_name = "MATH", precision = 6 },
@@ -39,7 +36,7 @@ return {
 		-- lsp settings
 		local coq = require "coq"
 
-		vim.lsp.config("lua_ls", coq.lsp_ensure_capabilities({
+		vim.lsp.config("lua_ls", {
 			on_init = function(client)
 				if client.workspace_folders then
 					local path = client.workspace_folders[1].name
@@ -84,9 +81,9 @@ return {
 				},
 			},
 			cmd = {"lua-language-server", "--locale=zh-cn"}
-		}))
+		})
 
-		vim.lsp.config("basedpyright", coq.lsp_ensure_capabilities({
+		vim.lsp.config("basedpyright", {
 			cmd_env = {LANG = "zh-cn"},
 			cmd = {"basedpyright-langserver", "--stdio"},
 			settings = {
@@ -100,9 +97,9 @@ return {
 					}
 				}
 			}
-		}))
+		})
 
-		vim.lsp.config("rust_analyzer", coq.lsp_ensure_capabilities({
+		vim.lsp.config("rust_analyzer", {
 			settings = {
 				['rust-analyzer'] = {
 					diagnostics = {
@@ -113,12 +110,12 @@ return {
 					}
 				}
 			}
-		}))
+		})
 
-		vim.lsp.config("bash_ls", coq.lsp_ensure_capabilities({}))
+		vim.lsp.config("bash_ls", {})
 
-		vim.lsp.config("dockerls", coq.lsp_ensure_capabilities({}))
+		vim.lsp.config("dockerls", {})
 
-		vim.lsp.config("docker_compose_language_service", coq.lsp_ensure_capabilities({}))
+		vim.lsp.config("docker_compose_language_service", {})
 	end
 }
