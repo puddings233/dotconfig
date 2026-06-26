@@ -15,6 +15,7 @@ environment {
 	GTK_THEME "Gruvbox-Dark"
 	QT_QPA_PLATFORM "wayland"
 	QT_QPA_PLATFORMTHEME "qt6ct"
+	QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
 	QT_AUTO_SCREEN_SCALE_FACTOR "1"
 	QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
 	SDL_VIDEODRIVER "wayland"
@@ -26,19 +27,12 @@ environment {
 	GDK_SCALE "1.25"
 	XCURSOR_THEME "Koishi"
 	XCURSOR_SIZE "32"
-	WLR_RENDER_DRM_DEVICE "/dev/dri/card1"
-	LIBVA_DRIVER_NAME "radeonsi"
-	//VK_ICD_FILENAMES "/usr/share/vulkan/icd.d/radeon_icd.x86_64.json"
-	//VK_ICD_FILENAMES "/usr/share/vulkan/icd.d/nvidia_icd.json"
-	GBM_BACKEND "nvidia-drm"
-	__GLX_VENDOR_LIBRARY_NAME "nvidia"
 	XMODIFIERS "@im=fcitx"
 	QT_IM_MODULE "fcitx"
 	QT_IM_MODULES "wayland;fcitx"
 	SDL_IM_MODULE "fcitx"
 	GLFW_IM_MODULE "ibus"
 	_JAVA_AWT_WM_NONREPARENTING "1"
-	MOZ_DRM_DEVICE "1"
 	MOZ_ENABLE_WAYLAND "1"
 }
 
@@ -108,8 +102,8 @@ layout {
 
 // misc
 debug {
-	render-drm-device "/dev/dri/renderD128"
-	ignore-drm-device "/dev/dri/renderD129"
+	render-drm-device "/dev/dri/by-path/pci-0000:06:00.0-render"
+	ignore-drm-device "/dev/dri/by-path/pci-0000:01:00.0-render"
 }
 cursor {
 	xcursor-theme "Koishi"
@@ -149,11 +143,9 @@ recent-windows {
 // window rules
 
 window-rule {
-	match app-id=r#"zen-browser$"# title="^画中画$"
-	match app-id=r#"Alacritty$"# title="^Alacritty-float$"
+	match app-id=r#"zen$"# title="^画中画$"
 	match app-id=r#"mpv$"#
 	match app-id=r#"imv$"#
-	match app-id=r#"vspolkit$"#
 
 	default-window-height { proportion 0.75; }
 	default-column-width { proportion 0.75; }
@@ -161,26 +153,30 @@ window-rule {
 }
 
 window-rule {
-	match app-id=r#"Alacritty$"# title="^Alacritty-float$"
-	match app-id=r#"vspolkit$"#
-
-	default-window-height { proportion 0.5; }
-	default-column-width { proportion 0.5; }
-}
-
-window-rule {
 	match app-id=r#"vspolkit$"#
 
 	default-window-height { proportion 0.15; }
-	default-column-width { proportion 0.2; }
+	default-column-width { proportion 0.15; }
+	open-floating true
+}
+
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+
+window-rule {
+	match app-id=r#"mpv$"#
+	match app-id=r#"imv$"#
+
+	variable-refresh-rate true
 }
 
 // keybind
 binds {
 
 	// basic
-	Mod+Return repeat=false { spawn "alacritty"; }
-	Mod+Shift+Return repeat=false { spawn "alacritty" "--title=Alacritty-float"; }
+	Mod+Return repeat=false { spawn "wezterm-gui"; }
 	Mod+Shift+L repeat=false { spawn "wlogout" "-b" "5"; }
 	Mod+Q repeat=false { close-window; }
 	Mod+Space repeat=false { spawn "fuzzel"; }
