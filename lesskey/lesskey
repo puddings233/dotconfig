@@ -1,0 +1,15 @@
+\ku noaction
+\kd noaction
+\kr noaction
+\kl noaction
+
+u back-line
+h left-scroll
+j forw-line
+k right-scroll
+l noaction
+
+U back-line-force
+J forw-line-force
+
+Q quit
